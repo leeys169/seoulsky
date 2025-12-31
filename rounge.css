@@ -267,13 +267,13 @@ section .sec1-notice .notice-textWrap{
     padding-right: 110px;
 }
 section .sec1-notice .notice-textWrap h1{
-    font-size: 70px;
+    font-size: 80px;
     line-height: 65px;
     font-weight: 900;
     margin-bottom: 40px;
 }
 section .sec1-notice .notice-textWrap p{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     color: #2c2c2c;
     line-height: 33px;
@@ -294,7 +294,7 @@ section .sec1-notice .notice-textWrap .notice-btn>div{
     transition: all 0.5s;
 }
 section .sec1-notice .notice-textWrap .notice-btn>div p{
-    font-size: 14px; font-weight: 300;
+    font-size: 18px; font-weight: 400;
     transition: all 0.5s;
 }
 section .sec1-notice .notice-textWrap .notice-btn>div:hover{
@@ -305,11 +305,26 @@ section .sec1-notice .notice-textWrap .notice-btn>div:hover p{
     color: #ffffff;
 }
 section .backgroundimg{
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+section .backgroundimg>div{
     width: 100%; height: 720px;
     background-size: cover;
     background-position: bottom;
-    background-image: url(images/sec1.png);
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
+section .backgroundimg > div.active{
+    opacity: 1; 
+}
+section .backgroundimg .box1{background-image: url(images/sec1.png);}
+section .backgroundimg .box2{background-image: url(images/plus1.png);}
+
 /*----section-02-----*/
 section .sec2-mainmenu{
     width: 100%;
@@ -420,7 +435,7 @@ section .sec2-mainmenu .insideWrap h1 span{
 /* 텍스트 스타일 */
 .insideWrap .menu p{
     color: #ffffff93;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 300;
     padding-left: 10px;
 }
@@ -576,7 +591,7 @@ section .sec2-mainmenu .insideWrap .menu .menu07 .imgbox{
 /*-----------section4-------------*/
 .sec4-timeNotice{
     position: relative;
-    width: 1600px; height: 800px;
+    width: 100%; height: 800px;
     box-sizing: border-box;
     background-image: url(images/aaaaaaa.jpg);
     background-repeat: no-repeat;
@@ -606,7 +621,7 @@ section .sec2-mainmenu .insideWrap .menu .menu07 .imgbox{
 }
 
 .info-content h2{
-    font-size: 50px;
+    font-size: 70px;
     margin-bottom: 60px;
     letter-spacing: -1px;
     padding-top: 150px;
@@ -614,7 +629,7 @@ section .sec2-mainmenu .insideWrap .menu .menu07 .imgbox{
 
 .info-content ul{
     list-style: none;
-    margin-left: 500px;
+    margin-left: 600px;
 }
 
 .info-content li{
@@ -629,16 +644,16 @@ section .sec2-mainmenu .insideWrap .menu .menu07 .imgbox{
     background: rgba(255,255,255,0.2);
     padding: 8px 18px;
     border-radius: 20px;
-    font-size: 15px;
-    width: 70px;
+    font-size: 20px;
+    width: 100px;
 }
 .info-content .text{
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .notice{
     margin-top: 60px;
-    font-size: 15px;
+    font-size: 20px;
     line-height: 30px;
     letter-spacing: 1px;
     color: #ffffffbb;

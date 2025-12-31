@@ -455,7 +455,7 @@ header .bottom .top-gnb .sub a{
 
 /* 섹션3 내부시설 */
 #facility{
-    padding: 140px 0;
+    padding: 180px 0;
 }
 
 #facility .facility-list{
@@ -567,7 +567,7 @@ header .bottom .top-gnb .sub a{
 
 /* 섹션4 관광지 */
 #tour{
-    padding: 50px 0;
+    padding: 100px 0;
     background: #fff;
     opacity: 0;
     transform: translateY(200px) scale(0.96);
@@ -587,7 +587,7 @@ header .bottom .top-gnb .sub a{
 #tour .sec-title{
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 65px;
 }
 
 
@@ -766,7 +766,7 @@ footer{
     background-color: #f6f6f6;
     box-sizing: border-box;
     font-size: 16px;
-    margin-top: 300px;
+    margin-top: 350px;
 }
 footer .footer-contents{
     width: 1600px;

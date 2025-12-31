@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="rounge.css">
     <script src="https://kit.fontawesome.com/93aaeb1c35.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
         $(document).ready(function(){
             /*-----헤더제이쿼리----*/
@@ -29,6 +30,19 @@
                 $(".scrWrap ul li").removeClass("on");
                 $(this).addClass("on");
             });
+            /*---메인페이지 화면 페이드인아웃---*/ 
+             let idx = 0;   // 현재 보이는 배경 인덱스
+            const bg = $(".backgroundimg > div");
+
+            // 첫 이미지 확실히 보이게
+            bg.removeClass("active");
+            bg.eq(0).addClass("active");
+
+            // 자동 페이드 전환
+            setInterval(function(){
+                bg.eq(idx).removeClass("active");
+                idx = (idx + 1) % bg.length;
+                bg.eq(idx).addClass("active");}, 3000);
 
             /*-----메뉴안내-----*/
             $(".arrowR").click(function(){
@@ -45,14 +59,40 @@
             });
             /*-----세트메뉴-----*/
             $(".setimgWrap > li").eq(0).css("margin-top", "100px");
+
             $(".next").click(function(){
-                $(".setimgWrap").stop().animate({ marginLeft: "-610px" }, 300,function(){
+                $(".setimgWrap").stop().animate({ marginLeft: "-610px" }, 300, function(){
                     $(".setimgWrap>li").first().appendTo(".setimgWrap");
                     $(".setimgWrap").css({ marginLeft: "0px" });
+
                     $(".setimgWrap > li").stop().animate({ marginTop: 100 }, 300);
                     $(".setimgWrap > li").eq(1).stop().animate({ marginTop: 0 }, 300);
                 });
             });
+
+            /* ★ 자동 슬라이드 함수 (왼쪽) */
+            let setimgTimer;
+
+            function setimgAuto(){
+                setimgTimer = setInterval(function(){
+                    $(".next").trigger("click");   // ← 왼쪽 이동 재사용
+                }, 3500);
+            }
+
+            setimgAuto();   // 처음 자동 실행
+
+            /* ★ 마우스 올리면 멈춤 */
+            $(".setimgWrap").mouseenter(function(){
+                clearInterval(setimgTimer);
+            });
+
+            /* ★ 마우스 빼면 다시 자동 */
+            $(".setimgWrap").mouseleave(function(){
+                setimgAuto();
+            });
+
+
+            /* ---------- 설명 텍스트 ---------- */
             $(".exp > li").hide().css("opacity", 0);
             $(".exp > li").eq(1).show().css("opacity", 1);
 
@@ -62,7 +102,17 @@
                     $(".exp > li").eq(1).show().animate({opacity: 1}, 600);
                 });
             });
-        });
+
+
+            // -----GSAP
+            gsap.from(".sec4-timeNotice .info-content > *", {
+            y: 30,  /*위치*/
+            opacity: 0,
+            duration: 2.0, /*시간차*/
+            stagger: 0.3,
+            ease: "power4.out" /*갖는속도*/
+        });        
+    });
     </script>
     
 </head>
@@ -189,7 +239,10 @@
                     </div>
                 </div>
             </div>
-            <div class="backgroundimg"></div>
+            <div class="backgroundimg">
+                <div class="box1 active"></div>
+                <div class="box2"></div>
+            </div>
         </div>
 <!-- 메뉴안내 -->
         <div class="sec2-mainmenu">
@@ -287,7 +340,7 @@
                             <h3 class="menu-EName">Pad Thai</h3>
                             <p class="kor">
                                 새우, 솔방울 오징어, 계란을 소스와 함께 볶아<br>
-                                홍고추와 땅콩가루로 가니쉬한 새콤달콤한 태국식 쌀국수 볶음면
+                                홍고추와 땅콩가루로 가니쉬한 새콤달콤한<br> 태국식 쌀국수 볶음면
                             </p>
                             <p class="eng">
                                 Thai-style fried noodles made with shrimp,<br>
