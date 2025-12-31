@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>123ROUNGE</title>
+    <link rel="stylesheet" href="rounge.css">
+    <script src="https://kit.fontawesome.com/93aaeb1c35.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            /*-----헤더제이쿼리----*/
+            $(".angle").click(function(){
+                $(".lag").toggle();
+                $(this).toggleClass("open");
+            });
+
+            $(".top-gnb").mouseenter(function(){
+                    $(".top-gnb>li .sub").stop().slideDown();
+                    $(".bottom-wrap").addClass("on");
+                });
+            $(".top-gnb").mouseleave(function(){
+                $(".top-gnb>li .sub").stop().slideUp();
+                $(".bottom-wrap").removeClass("on");
+            });
+
+            /*----section1 오른쪽 메뉴 부분 제이쿼리-----*/
+            $(".scrWrap ul li").click(function(){
+                $(".scrWrap ul li").removeClass("on");
+                $(this).addClass("on");
+            });
+
+            /*-----메뉴안내-----*/
+            $(".arrowR").click(function(){
+                $(".menu").stop().animate({marginLeft:"-800px"},500,function(){
+                    $(".menu>li").first().appendTo(".menu");
+                    $(".menu").css({ marginLeft: "-400px" });
+                });
+            });
+            $(".arrowL").click(function(){ 
+                $(".menu").stop().animate({marginLeft:"0px"},500,function(){
+                    $(".menu>li").last().prependTo(".menu");
+                    $(".menu").css({marginLeft:"-400px"});
+                });
+            });
+            /*-----세트메뉴-----*/
+            $(".setimgWrap > li").eq(0).css("margin-top", "100px");
+            $(".next").click(function(){
+                $(".setimgWrap").stop().animate({ marginLeft: "-610px" }, 300,function(){
+                    $(".setimgWrap>li").first().appendTo(".setimgWrap");
+                    $(".setimgWrap").css({ marginLeft: "0px" });
+                    $(".setimgWrap > li").stop().animate({ marginTop: 100 }, 300);
+                    $(".setimgWrap > li").eq(1).stop().animate({ marginTop: 0 }, 300);
+                });
+            });
+            $(".exp > li").hide().css("opacity", 0);
+            $(".exp > li").eq(1).show().css("opacity", 1);
+
+            $(".next").click(function(){
+                $(".exp > li").eq(1).stop().animate({opacity: 0}, 300, function(){
+                    $(".exp > li").hide().css("opacity", 0);
+                    $(".exp > li").eq(1).show().animate({opacity: 1}, 600);
+                });
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="top">
+            <ul class="top-btn">
+                <li><a href="#">롯데월드 어드벤처</a></li>
+                <li><a href="#">롯데월드 어드벤처 부산</a></li>
+                <li><a href="#">롯데월드 아쿠아리움</a></li>
+                <li><a href="#">롯데워터파크</a></li>
+                <li><a href="#">롯데월드 아쿠아리움 하노이</a></li>
+                <li class="line"></li>
+                <li><a href="#">민속박물관</a></li>
+                <li><a href="#">아이스링크</a></li>
+            </ul>
+            <ul class="login">
+                <li>로그인</li>
+                <li class="line"></li>
+                <li class="language">
+                    <a href="#">KOR</a>
+                    <ul class="lag">
+                        <li>KOR</li>
+                        <li>ENG</li>
+                        <li>JPN</li>
+                        <li>CHN</li>
+                    </ul>
+                </li>
+                <li class="angle">
+                    <i class="fa-solid fa-angle-down hello"></i>
+                    <i class="fa-solid fa-angle-up bye"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom-wrap">
+            <div class="bottom">
+                <div class="logo"><a href="index.html" target="_blank"></a></div>
+                <ul class="top-gnb">
+                    <li>
+                        <a href="#">즐길거리</a>
+                        <ul class="sub">
+                            <li><a href="experience_zone.html" target="_blank">체험존</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">시설안내</a>
+                        <ul class="sub">
+                            <li><a href="#">123 라운지</a></li>
+                            <li><a href="#">카페&스낵</a></li>
+                            <li><a href="#">기프트샵&포토존</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">요금/혜택</a>
+                        <ul class="sub">
+                            <li><a href="#">티켓요금</a></li>
+                            <li><a href="#">이달의 혜택</a></li>
+                            <li><a href="#">이벤트</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">이용가이드</a>
+                        <ul class="sub">
+                            <li><a href="#">운영시간</a></li>
+                            <li><a href="#">이용안내</a></li>
+                            <li><a href="#">편의시설/제도</a></li>
+                            <li><a href="#">오시는 길</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">소통서비스</a>
+                        <ul class="sub">
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">갤러리</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">칭찬/불편/건의</a></li>
+                            <li><a href="#">분실물센터</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="sec1-notice">
+            <div class="aaa">
+                <div class="scr-area">
+                    <div class="scrWrap">
+                        <div class="G-line"></div>
+                        <div class="B-line"></div>
+                        <ul>
+                            <li class="on m123">
+                                <p class="tt"><i class="fa-solid fa-chevron-up"></i></p>
+                                <p>123 ROUNGE</p>
+                                <p class="bb"><i class="fa-solid fa-chevron-down"></i></p>
+                            </li>
+                            <li class="mainM">
+                                <p class="tt"><i class="fa-solid fa-chevron-up"></i></p>
+                                <p>MAIN MENU</p>
+                                <p class="bb"><i class="fa-solid fa-chevron-down"></i></p>
+                            </li>
+                            <li class="setM">
+                                <p class="tt"><i class="fa-solid fa-chevron-up"></i></p>
+                                <p>SET MENU</p>
+                                <p class="bb"><i class="fa-solid fa-chevron-down"></i></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="notice-textWrap">
+                    <h1>123<br>ROUNGE</h1>
+                    <p>
+                        “Taste of Seoul above the cloud 구름 위에서 잊지 못할 서울을 만나다”<br>
+                        높고 웅장한 커튼윌을 통한 최고층의 전망과 함께 다양한 메뉴을 즐길 수 있는 프리미엄 라운지 입니다.<br>
+                        프로포즈 이벤트, 웨딩 피로연, 브랜드 론칭 행사 등 대관이 가능합니다.
+                    </p>
+                    <div class="notice-btn">
+                        <div>
+                            <p><a href="https://app.catchtable.co.kr/ct/shop/123lounge"target="_blank">예약하기</a></p>
+                        </div>
+                        <div>
+                            <p><a href="#sec3-reser">세트메뉴</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="backgroundimg"></div>
+        </div>
+<!-- 메뉴안내 -->
+        <div class="sec2-mainmenu">
+            <div class="sec2Wrap">
+                <div class="wihteBox"></div>
+                <div class="brownBox">
+                    <div class="arrowWrap">
+                        <div class="arrowL">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+                        </div>
+                        <div class="arrowR">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="insideWrap">
+                <h1>
+                    MAIN<br>
+                    <span>MENU</span>
+                </h1>
+                <div class="menuWrap">
+                    <ul class="menu">
+                        <li class="menu01">
+                            <div class="imgbox box1"></div>
+                            <h3 class="menu-Name">소 안심구이</h3>
+                            <h3 class="menu-EName">Grilled Beef-fillet</h3>
+                            <p class="kor">
+                                안심, 메쉬포테이토와 핫 베지터블,<br>
+                                프랑스식 흑후추소스를 곁들인 구이
+                            </p>
+                            <p class="eng">
+                                Grilled beef tenderloin with mesh<br>
+                                potatoes, stir-fried vegetables,<br>
+                                and French black pepper sauce.
+                            </p>
+                        </li>
+                        <li class="menu02">
+                            <div class="imgbox box2"></div>
+                            <h3 class="menu-Name">연어구이</h3>
+                            <h3 class="menu-EName">Grilled Salmon</h3>
+                            <p class="kor">
+                                상큼한 사과소스와 당근퓨레, 시금치를<br>
+                                곁들인  부드러운 연어구이
+                            </p>
+                            <p class="eng">
+                                Grilled salmon with apple sauce,<br>
+                                broccolini, dry tomato, balsamic grilled <br>
+                                eggplant, and spinach.
+                            </p>
+                        </li>
+                        <li class="menu03">
+                            <div class="menu03Wrap">
+                                <div class="imgbox box2"></div>
+                                <h3 class="menu-Name">트러플 크림 파스타</h3>
+                                <h3 class="menu-EName">Truffle Cream Pasta</h3>
+                                <p class="kor">
+                                    표고버섯과 트러플 크림으로 고소한<br>
+                                    풍미를 느낄 수 있는 스파게티
+                                </p>
+                                <p class="eng">
+                                    Truffle cream pasta with<br>
+                                    truffle pate, and truffle cream.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="menu04">
+                            <div class="imgbox box2"></div>
+                            <h3 class="menu-Name">불고기 햄버거</h3>
+                            <h3 class="menu-EName">Bulgogi Hamburger</h3>
+                            <p class="kor">
+                                신선한 야채와 브리오쉬 빵, 불고기패티 매콤한<br>
+                                청양고추 소스로 가미한 불고기 햄버거
+                            </p>
+                            <p class="eng">
+                                Bulgogi hamburger with tomato, onion,<br>normantal cheese
+                                minicops, and<br>cheonyang pepper sauce.
+                            </p>
+                        </li>
+                        <li class="menu05">
+                            <div class="imgbox box2"></div>
+                            <h3 class="menu-Name">라구 볼로네제 파스타</h3>
+                            <h3 class="menu-EName">Ragu Bolognese Pasta</h3>
+                            <p class="kor">
+                                부드러운 소고기 토마토 소스 스파게티
+                            </p>
+                            <p class="eng">
+                                Ragu bolognese pasta with beef, reggiano<br>
+                                cheese, garlic, onion, rosemary, and parsely.
+                            </p>
+                        </li>
+                        <li class="menu06">
+                            <div class="imgbox box2"></div>
+                            <h3 class="menu-Name">팟타이</h3>
+                            <h3 class="menu-EName">Pad Thai</h3>
+                            <p class="kor">
+                                새우, 솔방울 오징어, 계란을 소스와 함께 볶아<br>
+                                홍고추와 땅콩가루로 가니쉬한 새콤달콤한 태국식 쌀국수 볶음면
+                            </p>
+                            <p class="eng">
+                                Thai-style fried noodles made with shrimp,<br>
+                                squid and egg stir-fried in sweet and sour<br>
+                                sauce and garnished with red pepper, and<br>
+                                peanut powder.
+                            </p>
+                        </li>
+                        <li class="menu07">
+                            <div class="imgbox box2"></div>
+                            <h3 class="menu-Name">토마토 로제 해산물 리조또</h3>
+                            <h3 class="menu-EName">Tomato Rose Seafood Risotto</h3>
+                            <p class="kor">
+                                해산물과 크림이 가미된 토마토 소스 리조또
+                            </p>
+                            <p class="eng">
+                                Tomato rose risotto with seafood shrimp, scallops, and squid.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- --------------- -->
+        <div class="sec3-reser" id="sec3-reser">
+            <div class="imgConts">
+                <ul class="setimgWrap">
+                    <li class="lunch2">
+                        <div class="setimg"></div>
+                        <h3>123 Lunch Special (2인)</h3>
+                        <p>평일(Weekdays) 10:30~15:00</p>
+                    </li>
+                    <li class="people2">
+                        <div class="setimg"></div>
+                        <h3>123 Special (2인)</h3>
+                        <p>*전망대 무료입장 2인 포함</p>
+                    </li>
+                    <li class="people3">
+                        <div class="setimg"></div>
+                        <h3>123 Special (3인)</h3>
+                        <p>*전망대 무료입장 3인 포함</p>
+                    </li>
+                </ul>
+            </div>
+            <ul class="exp">
+                <li class="lunch2_exp">
+                    <ul class="choice">
+                        <li>구성</li>
+                        <li>미니 그린 샐러드(1)</li>
+                        <li>메인메뉴 2종(택1)</li>
+                        <li>스테이크 2종(택1)</li>
+                        <li>디저트 3종(택2)</li>
+                        <li>커피or차or사이다(택2)</li>
+                        <ul class="addmore">
+                            <li>[ 메인메뉴 2종 ]</li>
+                            <li>트러플 크림 파스타, 라구 볼로네제 파스타,<br> 마르게리타피자</li>
+                            <li class="space">* 현장판매 전용 메뉴입니다.(온라인 예매불가)</li>
+                        </ul>
+                    </ul>
+                </li>
+                <li class="people2_exp">
+                    <ul class="choice">
+                        <li>구성</li>
+                        <li>감자 대파 스프(2)</li>
+                        <li>랍스터&가리비 샐러드(1)</li>
+                        <li>파스타 2종(택1)</li>
+                        <li>스테이크 2종(택1)</li>
+                        <li>디저트 3종(택2)</li>
+                        <li>커피or차(택2)</li>
+                        <ul class="addmore">
+                            <li>[ 파스타 2종 ]</li>
+                            <li>트러플 크림 파스타, 토마토 로제 해산물 리조또</li>
+                            <li class="space">[ 스테이크 2종 ]</li>
+                            <li>소 알등심구이, 소 안심구이</li>
+                            <li class="space">[ 디저트 3종 ]</li>
+                            <li>산딸기 무스 케이크, 밀크레이프, 티라미수</li>
+                        </ul>
+                    </ul>
+                </li>
+                <li class="people3_exp">
+                    <ul class="choice">
+                        <li>구성</li>
+                        <li>감자 대파 스프(3)</li>
+                        <li>랍스터&가리비 샐러드(1)</li>
+                        <li>파스타 2종(택1)</li>
+                        <li>스테이크 2종(택2)</li>
+                        <li>디저트 3종(택3)</li>
+                        <li>커피or차(택3)</li>
+                        <ul class="addmore">
+                            <li>[ 파스타 2종 ]</li>
+                            <li>트러플 크림 파스타, 토마토 로제 해산물 리조또</li>
+                            <li class="space">[ 스테이크 2종 ]</li>
+                            <li>소 알등심구이, 소 안심구이</li>
+                            <li class="space">[ 디저트 3종 ]</li>
+                            <li>산딸기 무스 케이크, 밀크레이프, 티라미수</li>
+                        </ul>
+                    </ul>
+                </li>
+                <div class="next">
+                    <i class="fa-regular fa-circle-right"></i>
+                </div>
+            </ul>
+        </div>
+        <div class="sec4-timeNotice">
+            <div class="info-overlay"></div>
+            <div class="info-content">
+                <h2>이용안내</h2>
+                <ul>    
+                    <li>
+                        <span class="label">영업시간</span>
+                        <span class="text">일~목 : 10:30 ~ 21:50 / 금,토,공휴일 전일 : 10:30 ~ 22:50</span>
+                    </li>
+                    <li>
+                        <span class="label">라스트오더</span>
+                        <span class="text">일~목 : 20:50 / 금,토,공휴일 전일 : 21:50</span>
+                    </li>
+                    <li>
+                        <span class="label">문의</span>
+                        <span class="text">02） 3213-8019</span>
+                    </li>
+                </ul>
+                <p class="notice">
+                    ※ 이벤트·대관 행사 등 운영 상황에 따라 영업 시간은 조정될 수 있습니다.<br>
+                    ※ 123 Special(2인),(3인) 메뉴는 캐치테이블을 통한 예약제로 운영되고 있습니다.<br>
+                    ※ 당인 현장구매를 원하실 경우 123F 123라운지에 방문 문의 바랍니다.
+                </p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-contents">
+            <ul class="footer-gnb">
+                <li>SEOUL SKY 소개</li>
+                <li>롯데월드 소개</li>
+                <li>이용약관</li>
+                <li><span>개인정보처리방침</span></li>
+                <li>영상정보처리기기 운영/관리방침</li>
+                <li>이메일무단수집거부</li>
+                <li>제휴문의</li>
+                <li>이메일무단수집거부</li>
+                <li><span>인재채용</span></li>
+                <li>사이트맵</li>
+            </ul>
+            <ul class="sns">
+                <li><a href="https://www.instagram.com/seoulsky_official" target="blank"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/user/happylotteworld"><i class="fa-brands fa-youtube"></i></a></li>
+                <li><a href="https://www.facebook.com/seoulsky123/"><i class="fa-brands fa-facebook-f"></i></a></li>
+            </ul>
+            <div class="footer-box">
+                <div class="address">
+                    <p>
+                    서울특별시 송파구 올림픽로 300 롯데월드타워 | 대표자 : 권오상<br>
+                    <span>전화 : 1661-2000</span>
+                    </p>
+                </div>
+                <div class="footer-right">
+                    <div class="security">
+                        <a href="https://isms-p.kisa.or.kr/main/ispims/issue/?certificationMode=list&crtfYear=2023&pageFlag=ISMS-P&searchCondition=2&searchKeyword=%ED%98%B8%ED%85%94%EB%A1%AF%EB%8D%B0%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C" target="blank">
+                            <img src="images/copyrightimg.png" alt="KISA 한국인터넷진흥원 로고">
+                        </a>
+                        <div class="securityText">
+                            <p>
+                            인증범위|롯데월드 예매서비스<br>
+                            유효기간|2023.11.01 ~ 2026.10.31
+                            </p>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        COPYRIGHT 2025 SEOUL SKY. ALL RIGHTS RESERVED.
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo"><img src="images/footerLogo.svg" alt="로고"></div>
+        </div>
+    </footer>
+</body>
+</html>

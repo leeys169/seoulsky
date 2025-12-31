@@ -1,0 +1,657 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendardvariable.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+*{margin: 0; padding: 0;}
+ul{list-style: none;}
+a{text-decoration: none; color: #2c2c2c;}
+
+body{font-family: 'Pretendard';}
+
+header{
+    width: 100%;
+    padding-top: 30px;
+    position:absolute;
+    left: 0;
+    top: 0px;
+    z-index: 60;
+}
+header .top{
+    display: flex;
+    width: 1600px;
+    height: 40px;
+    justify-content: space-between;
+    color: #393939;
+    margin: 0 auto;
+}
+header .top>ul{
+    display: flex;
+    justify-content: space-between;
+}
+header .top .top-btn{
+    width: 980px;
+    justify-content: space-between;
+    font-weight: 300;
+    letter-spacing: -1px;
+}
+header .top .top-btn>li{cursor: pointer;}
+header .top ul .line{
+    background-color: #afafafa4;
+    height: 15px; width: 1px;
+    margin: 2px 10px 0 10px;
+}
+header .top .login{
+    display: flex;
+    justify-content: space-between;
+}
+header .top .login>li:nth-child(1){
+    cursor: pointer;
+}
+header .top .login .language{
+    display: flex;
+    flex-direction: column; 
+}
+header .top .login .language .lag{
+    width: 70px;
+    height: 200px;
+    background-color: #393939;
+    color: #fff;
+    display: none;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 20px;
+    position: absolute;
+    top: 70px;
+    right: 120px;
+    padding-top: 20px;
+    cursor: pointer;
+    z-index: 100;
+}
+header .top .login .language .lag>li:hover{
+    color:#c4c4c4
+}
+header .top .login .language .lag>li{
+    width: 70px;
+    height: 50px;
+}
+header .top .login .angle{
+    position: relative;
+}
+header .top .login .angle>i{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    cursor: pointer;
+}
+header .top .login .angle .bye{
+    display: none;
+}
+
+/* 언어 선택 화살표 */
+header .top .login .angle .fa-angle-up { display: none; }
+header .top .login .angle.open .fa-angle-down { display: none; }
+header .top .login .angle.open .fa-angle-up { display: block; }
+
+header .top::after{
+    content: "";
+    display: block;
+    width: 1600px; 
+    height: 1px;
+    background-color: #afafafa4;
+    position: absolute;
+    left: 152px; 
+    top: 70px;
+    z-index: 50;
+}
+header .bottom-wrap{
+    width: 100%;
+    height: 90px;
+    background-color: #ffffffec;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+header .bottom-wrap.on{
+    height: 300px;    
+}
+header .bottom{
+    display: flex;
+    color: #838383;
+    width: 1600px;     
+    margin: 0 auto;
+    position: relative; 
+}
+header .bottom .logo{
+    width: 70px;
+    height: 40px;
+    background-image: url(images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 100;
+}
+header .bottom .logo a{ 
+    display: block; width: 100%; height: 100%;
+}
+
+header .bottom .top-gnb{
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 100px;
+    width: 790px;
+    height: 200px;
+    justify-content: space-between;
+    position: relative;
+    top: 20px;
+    left: 0;
+}
+header .bottom .top-gnb>li{
+    cursor: pointer;
+    width: calc(790px / 5);
+    line-height: 50px;
+    position: relative;
+}
+header .bottom .top-gnb>li:hover{
+    color: #242424;
+}
+header .bottom .top-gnb>li a{
+    color: #636363;
+}
+header .bottom .top-gnb>li:hover>a{
+    color: #242424;
+}
+header .bottom .top-gnb>li a:hover{
+    color: #292929;
+}
+header .bottom .top-gnb .sub{
+    line-height: 30px;
+    position: absolute;
+    left:0; top:80px;
+    display:  none;
+}
+header .bottom .top-gnb .sub a{
+    font-size: 16px;
+    color: #5a5a5a;
+    font-weight: 300;
+}
+/* ----------section---------- */
+section{
+    width: 1600px;
+    margin: 0 auto;
+    color: #2c2c2c;
+    margin-top: 320px;
+}
+/* ---------체험존-스카이데크------- */
+
+section .sec-expz .expz-top{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    margin-top: 200px;
+}
+section .sec-expz .expz-top h1{
+    font-size: 60pt;
+    font-weight: 800;
+}
+section .sec-expz .expz-top h2{
+    font-size: 20pt;
+    margin-top: 30px;
+    font-weight: 300;
+}
+section .sec-expz .expz-top .decoline1 img{
+    margin-left: -1400px;
+    width: 600px;
+}
+section .sec-expz .expz-gnb{
+    display: flex;
+    height: 50px;
+    text-align: center;
+    align-items: center;
+    border-bottom: 3px solid #45a1ca;
+    font-weight: 300;
+}
+section .sec-expz .expz-gnb>li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 140px;
+    height: 50px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+}
+section .sec-expz .expz-gnb>li:hover{
+    cursor: pointer;
+}
+section .sec-expz .expz-gnb>li span.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 59px;
+    border-top: 3px solid #45a1ca;
+    border-left: 3px solid #45a1ca;
+    border-right: 3px solid #45a1ca;
+    background-color: #45a1ca;
+    border-radius: 7px 7px 0 0;
+    position: absolute;
+    left: 0px;
+    bottom: -3px;
+    box-sizing: border-box;
+    color: #fff;
+}
+section .sec-expz .tabbox{
+    position: relative;
+    width: 1600px;
+    height: 740px;
+}
+section .sec-expz .tabbox .expz-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+section .sec-expz .tabbox .expz-content .expztext{
+    width: 1600px;
+    height: 630px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 30px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+section .sec-expz .tabbox .expz-content .skydeck .expztext{
+    background-image: url(images/skydeck.png);
+}
+section .sec-expz .tabbox .expz-content .skyshuttle .expztext{
+    background-image: url(images/skyshuttle.jpg);
+}
+section .sec-expz .tabbox .expz-content .skyterrace .expztext{
+    background-image: url(images/skyterrace3.jpg);
+}
+section .sec-expz .tabbox .expz-content .birth .expztext{
+    background-image: url(images/birth.jpg);
+}
+section .sec-expz .tabbox .expz-content .skyplatform .expztext{
+    background-image: url(images/platform.jpg);
+}
+section .sec-expz .tabbox .expz-content .wait .expztext{
+    background-image: url(images/skyshow.jpg);
+}
+section .sec-expz .tabbox .expz-content .media .expztext{
+    background-image: url(images/skyshowmd.jpg);
+}
+section .sec-expz .tabbox .expz-content .mapping .expztext{
+    background-image: url(images/mapping.png);
+}
+section .sec-expz .tabbox .expz-content .theater .expztext{
+    background-image: url(images/theater.jpg);
+}
+section .sec-expz .tabbox .expz-content .table .expztext{
+    background-image: url(images/table.jpg);
+}
+section .sec-expz .tabbox .expz-content .expztext .blackbox{
+    width: 100%;
+    height: 300px;
+    padding-top: 50px;
+    background-color: #24242459;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(26, 26, 26, 0.4) 60%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+section .sec-expz .tabbox .expz-content .expztext .blackbox h2{
+    font-size: 32pt;
+    font-weight: 700;
+}
+section .sec-expz .tabbox .expz-content .expztext .blackbox h4{
+    font-size: 20pt;
+    margin: 30px 0;
+    font-weight: 500;
+}
+section .sec-expz .tabbox .expz-content .expztext .blackbox p{
+    font-size: 16pt;
+    line-height: 28px;
+    font-weight: 400;
+}
+section .sec-expz .tabbox .expz-content .skyterrace .expztext .blackbox p{
+    margin-top: 50px;
+}
+section .sec-expz .tabbox .expz-content .birth .expztext .blackbox p{
+    margin-top: 50px;
+}
+section .sec-expz .tabbox .expz-content .skyplatform .expztext .blackbox p{
+    margin-top: 30px;
+}
+section .sec-expz .tabbox .expz-content .wait .expztext .blackbox p{
+    margin-top: 100px;
+}
+section .sec-expz .tabbox .expz-content .media .expztext .blackbox p{
+    margin-top: 100px;
+}
+section .sec-expz .tabbox .expz-content .mapping .expztext .blackbox p{
+    margin-top: 100px;
+}
+section .sec-expz .tabbox .expz-content .theater .expztext .blackbox p{
+    margin-top: 70px;
+}
+section .sec-expz .tabbox .expz-content .table .expztext .blackbox p{
+    margin-top: 60px;
+}
+section .sec-expz .tabbox .expz-content li .morebox1{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #cbedfe;
+    color: #2c2c2c;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 200;
+}
+section .sec-expz .tabbox .expz-content li .morebox1 a{
+    display: block;
+}
+section .sec-expz .tabbox .expz-content .morebox1:hover{
+    cursor: pointer;
+    background-color: #45a1ca;
+}
+section .sec-expz .tabbox .expz-content .morebox1:hover a{
+    color: #fff;
+}
+section .sec-expz .decoline2{
+    margin-left: 1200px;
+    margin-top: 70px;
+}
+
+/* -------스카이 브릿지 투어-------- */
+
+section .sec-expz .sky-tour{
+    margin-top: 70px;
+    display: flex;
+    position: relative;
+    height: 1000px;
+    width: 100%;
+    overflow: hidden;
+}
+section .sec-expz .sky-tour .tour-tit h2{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    font-size: 50pt;
+    font-weight: 700;
+}
+section .sec-expz .sky-tour .tour-photobox1{
+    width: 871px;
+    height: 733px;
+    background-image: url(images/tour1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    top: 207px;
+    z-index: 1;
+}
+section .sec-expz .sky-tour .tour-photobox2{
+    width: 653px;
+    height: 526px;
+    background-image: url(images/tour2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+section .sec-expz .sky-tour .decoline3 img{
+    width: 400px;
+    position: absolute;
+    left: 840px;
+    top: 750px;
+}
+section .sec-expz .sky-tour .tour-text{
+    position: absolute;
+    right: 120px;
+    bottom: 300px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 200;
+}
+section .sec-expz .sky-tour .morebox2{
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #cbedfe;
+    color: #2c2c2c;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+    position: absolute;
+    right: 240px;
+    bottom: 150px;
+    font-weight: 200;
+}
+section .sec-expz .sky-tour .morebox2 a{
+    display: block;
+}
+section .sec-expz .sky-tour .morebox2:hover{
+    cursor: pointer;
+    background-color: #45a1ca;
+}
+section .sec-expz .sky-tour .morebox2:hover a{
+    color: #fff;
+}
+
+/* ---------롯데월드어드벤처-------- */
+section .sec-expz .barwrap{
+    position: relative;
+}
+section .sec-expz .barwrap .slide-wrap {
+    width: 1600px;
+    overflow: hidden;   
+}
+section .sec-expz .slide-wrap .havefun{
+    width: 3200px;
+    display: flex;
+}
+section .sec-expz .slide-wrap .lotteworld{
+    margin-top: 150px;
+    width: 1600px;
+    height: 921px;
+    margin-bottom: 150px;
+    position: relative;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-photobox{
+    display: flex;
+    align-items: center;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-photobox .lw-tit{
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+section .sec-expz .slide-wrap .adventure .lw-photobox .lw-photo{
+    width: 722px;
+    height: 921px;
+    background-image: url(images/LTW.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 180px;
+}
+section .sec-expz .slide-wrap .aquarium .lw-photobox .aq-photo{
+    width: 722px;
+    height: 921px;
+    background-image: url(images/aquarium.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 180px;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 600px;
+    height: 921px;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-text-tit h4{
+    font-size: 28pt;
+    font-weight: 700;
+    position: absolute;
+    top: 40%;
+    left: 0px;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-sub-text h5{
+    position: absolute;
+    top: 60%;
+    left: 0px;
+    font-size: 16pt;
+    font-weight: 400;
+    color: #393939;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-sub-text p{
+    position: absolute;
+    top: 65%;
+    left: 0px;
+    font-size: 16pt;
+    font-weight: 400;
+    line-height: 28px;
+    color: #393939;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-arrow{
+    position: absolute;
+    top: 40%;
+    right: 0px;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-arrow:hover{
+    cursor: pointer;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-view{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 16pt;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-view a{
+    color: #c4c4c4;
+}
+section .sec-expz .slide-wrap .lotteworld .lw-text .lw-view:hover a{
+    cursor: pointer;
+    color: #2c2c2c;
+}
+section .sec-expz .barwrap .decoline4{
+    position: absolute;
+    top: 300px;
+    right: -150px;
+}
+section .sec-expz .barwrap .decoline5{
+    position: absolute;
+    bottom: 200px;
+    left: -180px;
+}
+
+/*--------footer------*/
+footer{
+    font-weight: 300;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-top: 100px;
+}
+footer .footer-contents{
+    width: 1600px;
+    margin: 0 auto;
+    padding-top: 30px;
+    color: #2c2c2c;
+}
+footer .footer-contents .footer-gnb{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+}
+footer .footer-contents .footer-gnb:hover{
+    cursor: pointer;
+}
+footer .footer-contents .footer-gnb span{
+    font-weight: 500;
+}
+footer .footer-contents .sns{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+}
+footer .footer-contents .sns li a>i{
+    background-color: #2c2c2c;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 5px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 40px;
+}
+footer .footer-contents .sns>li:hover{
+    cursor: pointer;
+}
+footer .footer-contents .footer-box{
+    display: flex;
+    justify-content: space-between;
+}
+footer .footer-contents .footer-box .address{
+    margin-top: 30px;
+    color: #5a5a5a;
+}
+footer .footer-contents .footer-box .address span:hover{
+    cursor: pointer;
+}
+footer .footer-contents .footer-box .footer-right{
+    font-size: 14px;
+    color: #5a5a5a;
+    text-align: right;
+}
+footer .footer-contents .footer-box .footer-right .security{
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin-top: 27px;
+    margin-bottom: 18px;
+}
+footer .footer-contents .footer-box .footer-right .security img{
+    width: 38px;
+    margin-left: 120px;
+}
+footer .footer-contents .footer-box .footer-right .security img:hover{
+    cursor: pointer;
+}
+footer .footer-contents .footer-logo{
+    text-align: center;
+    margin-top: 45px;
+    padding-bottom: 20px;
+}
+footer .footer-contents .footer-logo:hover{
+    cursor: pointer;
+}
+footer .footer-contents .footer-logo img{
+    width: 105px;
+}

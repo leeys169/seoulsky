@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEOUL SKY</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://kit.fontawesome.com/93aaeb1c35.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script>
+    gsap.registerPlugin(ScrollTrigger);
+        
+    $(document).ready(function(){
+
+        $(".angle").click(function(){
+            $(".lag").toggle();
+            $(this).toggleClass("open");
+        });
+
+        $(".top-gnb").mouseenter(function(){
+                $(".top-gnb>li .sub").stop().slideDown();
+                $(".bottom-wrap").addClass("on");
+            });
+        $(".top-gnb").mouseleave(function(){
+            $(".top-gnb>li .sub").stop().slideUp();
+            $(".bottom-wrap").removeClass("on");
+        });
+
+
+
+        // ---------관광지
+        $(document).ready(function(){
+
+            $(".coverflow .card").click(function(){
+
+                let i = $(this).index();
+                let total = $(".coverflow .card").length;
+
+                $(".coverflow .card")
+                    .removeClass("active left1 left2 right1 right2");
+                    // 전체초기화
+
+                    $(this).addClass("active");
+                    // 클릭했을 때 중앙으로 (class 명이 active 를 가지고 있음)
+
+                //왼쪽
+                if(i - 1 >= 0){
+                    // 클릭한 카드기준 왼쪽에 카드가 있을 경우
+                    $(".card").eq(i - 1).addClass("left1");
+                    // 그 카드를 가져오고 (left1에)
+                }else{
+                    $(".card").eq(total - 1).addClass("left1");
+                }   // 없으면 전체 카드 중 마지막 카드를 left1 자리로 가져와
+                    // ***채찌설명 i - 2가 음수가 되는 경우
+                    // ***채찌설명 total을 더해서 인덱스를 보정 → 뒤쪽 카드 선택
+
+                if(i - 2 >= 0){
+                    // 클릭한 카드기준 왼쪽 2번째에 카드가 있을 경우 
+                    $(".card").eq(i - 2).addClass("left2");
+                    // 그 카드를 가져오고 (left2에)
+                }else{
+                    $(".card").eq(total + (i - 2)).addClass("left2");
+                    // 없으면 뒤에서 두번째 카드를 left2 자리로 가져와
+                }
+
+                //오른쪽
+                if(i + 1 < total){
+                    // 클릭한 카드 기준 오른쪽에 카드가 있을 경우
+                    $(".card").eq(i + 1).addClass("right1");
+                    // 그 카드를 가져와서 right1 위치에 둔다
+                }else{
+                    // 클릭한 카드가 마지막 카드일 경우 (i + 1이 범위를 벗어남)
+                    $(".card").eq(0).addClass("right1");
+                    // 첫 번째 카드를 다시 가져와 right1 위치에 둔다 → 배열을 원형처럼 이어주는 처리
+                }
+
+                if(i + 2 < total){
+                    // 클릭한 카드 기준 오른쪽 두 번째에 카드가 있을 경우
+                    $(".card").eq(i + 2).addClass("right2");
+                    // 그 카드를 가져와 right2 위치에 둔다
+                }else{
+                    // i + 2가 total 이상이 되어 배열 범위를 벗어난 경우
+                    $(".card").eq((i + 2) - total).addClass("right2");
+                    // ***채찌설명 total을 빼서 인덱스를 보정 → 앞쪽 카드 선택
+                    // ***채찌설명 예: i=4, total=5 → (4+2)-5 = 1 → 1번 카드
+                }
+            });
+        });
+
+        // ------시계
+
+            function updateClock(){
+                const now = new Date();
+
+                let h = now.getHours();
+                let m = now.getMinutes();
+                let s = now.getSeconds();
+
+                h = h < 10 ? "0" + h : h;
+                m = m < 10 ? "0" + m : m;
+                s = s < 10 ? "0" + s : s;
+
+                document.getElementById("clock-time").innerText =
+                    h + ":" + m + ":" + s;
+            }
+
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // -----날씨
+            const API_KEY = "7e67886c9f67fd41818b678b1c1a082e";
+            const CITY = "Seoul";
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric&lang=kr`)
+                .then(res => res.json())
+                .then(data => {
+                    const temp = Math.round(data.main.temp);
+                    const desc = data.weather[0].description;
+                    const icon = data.weather[0].icon;
+
+                    document.querySelector(".temp-num").innerText = temp;
+                    document.getElementById("weather-desc").innerText = desc;
+                    document.getElementById("weather-icon").innerText = getWeatherIcon(icon);
+                });
+
+                function getWeatherIcon(code){
+                    if(code.includes("01")) return "☀";
+                    if(code.includes("02")) return "🌤";
+                    if(code.includes("03") || code.includes("04")) return "☁";
+                    if(code.includes("09") || code.includes("10")) return "🌧";
+                    if(code.includes("11")) return "⛈";
+                    if(code.includes("13")) return "❄";
+                    if(code.includes("50")) return "🌫";
+                    return "🌡";
+                }
+
+                // ---스크롤이벤트
+                $(window).on("scroll", function () {
+                    let scrollTop = $(window).scrollTop();
+                    let windowHeight = $(window).height();
+                    let tourTop = $("#tour").offset().top;
+
+                    if (scrollTop + windowHeight > tourTop + 100) {
+                        $("#tour").addClass("show");
+                    }
+            });
+
+            // -----GSAP 메인배너
+            gsap.from("#mainBanner .banner-inner > *", {
+            y: 30,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+
+            gsap.to("#mainBanner .banner-clock", {
+            y: -6,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+
+        // -----GSAP 스크롤이벤트
+        gsap.from("#event", {
+            scrollTrigger: {
+                trigger: "#event",
+                start: "top 85%"
+            },
+            y: 80,
+            opacity: 0,
+            duration: 1.8,
+            ease: "power2.out"
+        });
+
+        gsap.from("#facility", {
+            scrollTrigger: {
+                trigger: "#facility",
+                start: "top 85%"
+            },
+            y: 80,
+            opacity: 0,
+            duration: 1.8,
+            ease: "power2.out"
+        });
+//   ----끝
+});
+    </script>
+
+</head>
+<body>
+        <div id="wrap">
+            <!-- ---시작 -->
+            <!-- ---헤더 -->
+            <header>
+                <div class="top">
+                    <ul class="top-btn">
+                        <li><a href="#">롯데월드 어드벤처</a></li>
+                        <li><a href="#">롯데월드 어드벤처 부산</a></li>
+                        <li><a href="#">롯데월드 아쿠아리움</a></li>
+                        <li><a href="#">롯데워터파크</a></li>
+                        <li><a href="#">롯데월드 아쿠아리움 하노이</a></li>
+                        <li class="line"></li>
+                        <li><a href="#">민속박물관</a></li>
+                        <li><a href="#">아이스링크</a></li>
+                    </ul>
+                    <ul class="login">
+                        <li>로그인</li>
+                        <li class="line"></li>
+                        <li class="language">
+                            <a href="#">KOR</a>
+                            <ul class="lag">
+                                <li>KOR</li>
+                                <li>ENG</li>
+                                <li>JPN</li>
+                                <li>CHN</li>
+                            </ul>
+                        </li>
+                        <li class="angle">
+                            <i class="fa-solid fa-angle-down hello"></i>
+                            <i class="fa-solid fa-angle-up bye"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-wrap">
+                    <div class="bottom">
+                        <div class="logo"><a href="./index.html"></a></div>
+                        <ul class="top-gnb">
+                            <li>
+                                <a href="#">즐길거리</a>
+                                <ul class="sub">
+                                    <li><a href="./experience_zone.html">체험존</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">시설안내</a>
+                                <ul class="sub">
+                                    <li><a href="./rounge.html">123 라운지</a></li>
+                                    <li><a href="#">카페&스낵</a></li>
+                                    <li><a href="#">기프트샵&포토존</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">요금/혜택</a>
+                                <ul class="sub">
+                                    <li><a href="#">티켓요금</a></li>
+                                    <li><a href="#">이달의 혜택</a></li>
+                                    <li><a href="#">이벤트</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">이용가이드</a>
+                                <ul class="sub">
+                                    <li><a href="#">운영시간</a></li>
+                                    <li><a href="#">이용안내</a></li>
+                                    <li><a href="#">편의시설/제도</a></li>
+                                    <li><a href="#">오시는 길</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">소통서비스</a>
+                                <ul class="sub">
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">갤러리</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">칭찬/불편/건의</a></li>
+                                    <li><a href="#">분실물센터</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ---메인배너 -->
+            <section id="mainBanner">
+                <div class="banner-bg">
+                    <div class="banner-inner">
+                        <h1>SEOUL SKY</h1>
+                        <h3>A New World In The Sky</h3>
+                        <p>서울의 눈부신 낮과 아름다움을 수놓은 밤하늘을 보며</p>
+                        <ul class="banner-btn">
+                            <li>예매 / 운영시간</li>
+                            <li>오시는길</li>
+                        </ul>
+
+                        
+                        <div class="banner-clock">
+                            <!-- ----날씨 -->
+                            <div class="weather">
+                                <div class="weather-main">
+                                    <span id="weather-icon">☀</span>
+
+                                    <div id="weather-temp">
+                                        <span class="temp-num">--</span>
+                                        <span class="temp-unit">°C</span>
+                                    </div>
+                                </div>
+
+                                <div id="weather-desc">Loading...</div>
+                            </div>  
+                            <!-- -----시계 -->
+                            <span id="clock-time">00:00:00</span>
+                            <span class="clock-city">SEOUL</span>
+                        </div>
+                </div>
+            </section>
+
+            <!-- 섹션2 이벤트 -->
+            <section id="event">
+                <div class="event-wrap">
+                    <h2 class="sec-title">이벤트</h2>
+
+                <div class="event-slide mySwiper swiper">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide banner1">
+                            <div class="innerTxt">
+                                <h1>BC카드 페이북 QR결제 프로모션</h1>
+                                <h4>BC카드 페이북 QR결제 매표소 예매고객 본인 18,600원 + 동반 2인 20%, 2인권 31,000원</h4>
+                                <div class="moreBtn">
+                                    <p><a href="#none">자세히보기</a></p>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="swiper-slide banner2">
+                            <div class="innerTxt">
+                                <h1>네이버페이에 대해 이야기 나눠요!</h1>
+                                <h4>네이버페이 현장 결제 시, 최대 25% 할인!</h4>
+                                <div class="moreBtn">
+                                    <p><a href="#none">자세히보기</a></p>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="swiper-slide banner3">
+                            <div class="innerTxt">
+                                <h1>하늘에서 제일 가까운 곳, 소원이 이루어지는 명당</h1>
+                                <h4>떠오르는 해의 기운이 가득 담긴 길상을 기원하는 조선시대 만화에서 소원을 빌어 보아요</h4>
+                                <div class="moreBtn">
+                                    <p><a href="#none">자세히보기</a></p>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+
+            <!-- 섹션3 내부시설 -->
+            <section id="facility">
+                <h2 class="sec-title">내부시설</h2>
+
+                <ul class="facility-list">
+                    <li class="facility-item cont1">
+                        <div class="hover-box">
+                            <div class="info">
+                                <h3>SEOUL SKY CAFE</h3>
+                                <p>122F</p>
+                            </div>
+
+                            <div class="time">
+                                <p class="fc-btn">영업시간</p>
+                                <div class="sub-txt">
+                                    <p>일~목 10:30 ~ 22:00</p>
+                                    <p>금~토, 공휴일 전날 10:30 ~ 23:00</p>
+                                </div>
+                            </div>
+
+                            <div class="last-order">
+                                <p class="fc-btn">라스트오더</p>
+                                <div class="sub-txt">
+                                    <p>마감 30분 전</p>
+                                </div>
+                            </div>
+
+                            <p class="plan">하늘 아래 가장 높은 카페 - 엔제리너스 커피 전문점</p>
+                        </div>
+                    </li>
+                    <li class="facility-item cont2">
+                        <div class="hover-box">
+                            <div class="info">
+                                <h3>모찌이야기</h3>
+                                <p>118F</p>
+                            </div>
+
+                            <div class="time">
+                                <p class="fc-btn">영업시간</p>
+                                <div class="sub-txt">
+                                    <p>일~목 10:30 ~ 22:00</p>
+                                    <p>금~토, 공휴일 전날 10:30 ~ 23:00</p>
+                                </div>
+                            </div>
+
+                            <div class="last-order">
+                                <p class="fc-btn">라스트오더</p>
+                                <div class="sub-txt">
+                                    <p>마감 30분 전</p>
+                                </div>
+                            </div>
+
+                            <p class="plan">과일 모찌</p>
+                        </div>
+                    </li>
+                    <li class="facility-item cont3">
+                        <div class="hover-box">
+                            <div class="info">
+                                <h3>SKY FRIENDS CAFE</h3>
+                                <p>119F</p>
+                            </div>
+
+                            <div class="time">
+                                <p class="fc-btn">영업시간</p>
+                                <div class="sub-txt">
+                                    <p>일~목 10:30 ~ 22:00</p>
+                                    <p>금~토, 공휴일 전날 10:30 ~ 23:00</p>
+                                </div>
+                            </div>
+
+                            <div class="last-order">
+                                <p class="fc-btn">라스트오더</p>
+                                <div class="sub-txt">
+                                    <p>마감 60분 전</p>
+                                </div>
+                            </div>
+
+                            <p class="plan">가장 높은 곳에서 맛보는 맛있는 소프트 아이스크림</p>
+                        </div>
+                    </li>
+                    <li class="facility-item cont4">
+                        <div class="hover-box">
+                            <a href="./rounge.html">
+                            <div class="info">
+                                <h3>123F LOUNGE</h3>
+                                <p>123F</p>
+                            </div>
+
+                            <div class="time">
+                                <p class="fc-btn">영업시간</p>
+                                <div class="sub-txt">
+                                    <p>일~목 10:30 ~ 22:00</p>
+                                    <p>금~토, 공휴일 전날 10:30 ~ 23:00</p>
+                                </div>
+                            </div>
+
+                            <div class="last-order">
+                                <p class="fc-btn">라스트오더</p>
+                                <div class="sub-txt">
+                                    <p>마감 60분 전</p>
+                                </div>
+                            </div>
+
+                            <p class="plan">구름 위에서 즐기는 미식과 여유</p>
+                            </a>
+                        </div>
+
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 섹션4 관광지 -->
+            <section id="tour">
+                <div class="tour-wrap">
+                    <h2 class="sec-title white">주변 관광지 소개</h2>
+
+                    <div class="coverflow">
+                        <ul class="coverflow-list">
+                            <li class="card left2">
+                                <img src="./images/sec3_3.png">
+                                <div class="txt">
+                                    <h3>가락시장</h3>
+                                    <p>대한민국 최대 규모의 농수산물 도매시장으로,신선한 식재료와<br>활기찬 시장 풍경 속에서 살아있는 도시의 에너지를 만날 수 있는 공간.</p>
+                                </div>
+                            </li>
+
+                            <li class="card left1">
+                                <img src="./images/sec3_2.jpg">
+                                <div class="txt">
+                                    <h3>올림픽공원</h3>
+                                    <p>서울 송파구에 위치한 올림픽공원은<br>1988년 하계 올림픽을 위해 조성된 공원으로,<br>경기장·문화시설·백제 유적 몽촌토성과 다양한 휴식 공간을 갖춘 종합 공원이다.</p>
+                                </div>
+                            </li>
+
+                            <li class="card active">
+                                <img src="./images/sec3_1.jpg">
+                                <div class="txt">
+                                    <h3>한강공원</h3>
+                                    <p>한강공원은 서울을 가로지르는 한강을 따라 조성된 공원으로,<br>시민들이 자연 속에서 휴식·운동·문화활동을 즐길 수 있는 대표적인 도심 공원이다.</p>
+                                </div>
+                            </li>
+
+                            <li class="card right1">
+                                <img src="./images/sec3_4.jpg">
+                                <div class="txt">
+                                    <h3>석촌호수</h3>
+                                    <p>도심 속에서 사계절의 변화를 가장 아름답게 느낄 수 있는 호수공원으로,<br>
+                                    벚꽃길 산책과 문화행사, 여유로운 휴식을 동시에 즐길 수 있는 송파의 대표 명소.</p>
+                                </div>
+                            </li>
+
+                            <li class="card right2">
+                                <img src="./images/sec3_5.jpg">
+                                <div class="txt">
+                                    <h3>코엑스</h3>
+                                    <p>코엑스는 서울 강남구에 위치한 대형 복합문화공간으로,<br>전시·컨벤션·쇼핑·공연·아쿠아리움 등이 어우러진 국내 대표적인 랜드마크이다.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ---푸터 -->
+            <footer>
+                <div class="footer-contents">
+                    <ul class="footer-gnb">
+                        <li>SEOUL SKY 소개</li>
+                        <li>롯데월드 소개</li>
+                        <li>이용약관</li>
+                        <li><span>개인정보처리방침</span></li>
+                        <li>영상정보처리기기 운영/관리방침</li>
+                        <li>이메일무단수집거부</li>
+                        <li>제휴문의</li>
+                        <li>이메일무단수집거부</li>
+                        <li><span>인재채용</span></li>
+                        <li>사이트맵</li>
+                    </ul>
+                    <ul class="sns">
+                        <li><a href="https://www.instagram.com/seoulsky_official" target="blank"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/user/happylotteworld"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li><a href="https://www.facebook.com/seoulsky123/"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    </ul>
+                    <div class="footer-box">
+                        <div class="address">
+                            <p>
+                            서울특별시 송파구 올림픽로 300 롯데월드타워 | 대표자 : 권오상<br>
+                            <span>전화 : 1661-2000</span>
+                            </p>
+                        </div>
+                        <div class="footer-right">
+                            <div class="security">
+                                <a href="https://isms-p.kisa.or.kr/main/ispims/issue/?certificationMode=list&crtfYear=2023&pageFlag=ISMS-P&searchCondition=2&searchKeyword=%ED%98%B8%ED%85%94%EB%A1%AF%EB%8D%B0%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C" target="blank">
+                                    <img src="images/footer_1.png" alt="KISA 한국인터넷진흥원 로고">
+                                </a>
+                                <div class="securityText">
+                                    <p>
+                                    인증범위|롯데월드 예매서비스<br>
+                                    유효기간|2023.11.01 ~ 2026.10.31
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="copyright">
+                                COPYRIGHT 2025 SEOUL SKY. ALL RIGHTS RESERVED.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-logo"><img src="images/foorer_2.png" alt="로고"></div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ----------------------- -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+            const eventSwiper = new Swiper(".mySwiper", {
+                slidesPerView: 1,
+                speed: 1000,
+
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+
+                autoplay: {
+                    delay: 1000,
+                    disableOnInteraction: false
+                }
+            });
+
+            // --------마우스이벤트
+            $(".mySwiper").mouseenter(function () {
+                eventSwiper.autoplay.stop();
+            });
+
+            $(".mySwiper").mouseleave(function () {
+                eventSwiper.autoplay.start();
+            });
+    </script>   
+</body>
+</html>
